@@ -36,7 +36,7 @@ public class CartService {
 
 
     public CartCost listCartItems(String username){
-        List<Cart> cartList = cartRepository.findAllByUsername(username); //where's the implementation?
+        List<Cart> cartList = cartRepository.findAllByUsername(username);
         List<CartDto> cartItems = new ArrayList<>();
         for(Cart cart: cartList){
             CartDto cartDto = getDtoFromCart(cart);
@@ -55,18 +55,6 @@ public class CartService {
         return cartDto;
     }
 
-
-//    public void updateCartItem(AddToCartDto cartDto, String username, Book book) throws CartItemNotExistException{
-//        if(!cartRepository.existsById(cartDto.getCart_item_id()))
-//            throw new CartItemNotExistException("Cart-Item's ID " + cartDto.getCart_item_id() + " is invalid.");
-//
-//        Cart cart = getAddToCartFromDto(cartDto, username);
-//        cart.setQuantity(cartDto.getQuantity());
-//        cart.setUsername(username);
-//        cart.setCart_id(cartDto.getCart_item_id());
-//        cart.setBook_id(book.getIsbn());
-//        cartRepository.save(cart);
-//    }
 
     public void updateCartItem(Integer cartItemId, AddToCartDto cartDto, String username) throws CartItemNotExistException{
         if(!cartRepository.existsById(cartItemId))
