@@ -27,6 +27,7 @@ public class CreditCardsController {
 	@Autowired
 	private CreditCardsRepository creditcardsRepository;
 	
+	// Get Credit Cards or a List of Credit Cards for User
 	@GetMapping("/Users/{username}/creditcards")
 	  public ResponseEntity<List<CreditCards>> getAllCreditCardsByUsername(@PathVariable(value = "username") String username) throws ResourceNotFoundException {
 	    if (!userRepository.existsById(username)) {
@@ -36,7 +37,8 @@ public class CreditCardsController {
 	    List<CreditCards> creditcard = creditcardsRepository.findByUsername(username);
 	    return new ResponseEntity<>(creditcard, HttpStatus.OK);
 	  }
-
+      
+	  // Get Credit Card for User by Credit Card Number
 	  @GetMapping("/creditcards/{credit_card_number}")
 	  public ResponseEntity<CreditCards> getCreditCardsByUsername(@PathVariable(value = "credit_card_number") String credit_card_number) throws ResourceNotFoundException {
 	    CreditCards creditcard = creditcardsRepository.findById(credit_card_number)
@@ -45,6 +47,7 @@ public class CreditCardsController {
 	    return new ResponseEntity<>(creditcard, HttpStatus.OK);
 	  }
 	  
+	  // Create Credit Card For User
 	  @PostMapping("/Users/{username}/creditcards")
 	  public ResponseEntity<CreditCards> createCreditCard(@PathVariable(value = "username") String username,
 	      @RequestBody CreditCards creditcardRequest) throws ResourceNotFoundException {
