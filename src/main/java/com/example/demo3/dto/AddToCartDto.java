@@ -3,6 +3,8 @@ package com.example.demo3.dto;
 import com.example.demo3.model.Cart;
 import com.sun.istack.NotNull;
 
+import javax.persistence.Transient;
+
 public class AddToCartDto {
     private Integer cart_item_id;
     private @NotNull String username;
@@ -12,12 +14,14 @@ public class AddToCartDto {
     public AddToCartDto(){
     }
 
+
     public AddToCartDto(Integer cart_item_id, String username, @NotNull Long book_id, @NotNull Integer quantity){
         this.cart_item_id = cart_item_id;
         this.username = username;
         this.book_id = book_id;
         this.quantity = quantity;
     }
+
 
     public AddToCartDto(Cart cart){
         this.cart_item_id = cart.getCart_id();

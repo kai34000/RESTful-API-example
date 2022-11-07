@@ -62,9 +62,9 @@ public class CartService {
 
         Cart cart = getAddToCartFromDto(cartDto, username);
 
-        cart.setQuantity(cartDto.getQuantity());
         cart.setUsername(username);
         cart.setCart_id(cartItemId);
+        cart.setQuantity(cartDto.getQuantity());
         cart.setBook_id(cartDto.getBook_id());
 
         cartRepository.save(cart);

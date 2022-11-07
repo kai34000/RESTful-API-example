@@ -48,7 +48,7 @@ public class Cart {
         this.book = book;
     }
 
-    //?? used in CartService.getAddToCartFromDto
+    // used in CartService.getAddToCartFromDto
     public Cart(AddToCartDto addToCartDto, String username){
         this.username = username;
         this.book_id = addToCartDto.getBook_id();
