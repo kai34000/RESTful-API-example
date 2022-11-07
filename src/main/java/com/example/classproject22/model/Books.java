@@ -23,12 +23,18 @@ public class Books {
     @Column(name = "year_published")
     private Date year_published;
 
+    @Column(name = "copiessold")
+    private int copiessold;
+
+    @Column(name = "average_rating")
+    private double average_rating;
+
     public Books() {
         super();
     }
 
-    public Books(long isbn, String book_name, String description, double price, String author,
-                 String genre, String publisher, Date year_published) {
+    public Books(long isbn, String book_name, String description, double price, String author, String genre,
+                 String publisher, Date year_published, int copiessold, double average_rating) {
         this.isbn = isbn;
         this.book_name = book_name;
         this.description = description;
@@ -37,6 +43,8 @@ public class Books {
         this.genre = genre;
         this.publisher = publisher;
         this.year_published = year_published;
+        this.copiessold = copiessold;
+        this.average_rating = average_rating;
     }
 
     public long getIsbn() {
@@ -101,5 +109,21 @@ public class Books {
 
     public void setYear_published(Date year_published) {
         this.year_published = year_published;
+    }
+
+    public int getCopiessold() {
+        return copiessold;
+    }
+
+    public void setCopiesSold(int copiessold) {
+        this.copiessold = copiessold;
+    }
+
+    public double getAverage_rating() {
+        return average_rating;
+    }
+
+    public void setAverage_rating(double average_rating) {
+        this.average_rating = average_rating;
     }
 }
