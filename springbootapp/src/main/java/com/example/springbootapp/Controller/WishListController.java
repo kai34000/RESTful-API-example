@@ -44,29 +44,7 @@ public class WishListController {
 	    return new ResponseEntity<>(wishlist, HttpStatus.OK);
 	  }
 	
-
-//    @PostMapping
-//    public ResponseEntity<String> createWishList(@PathVariable(value = "username")String email, @RequestBody wishlist wishList) {
-//        List<wishlist> wishLists = wishlistRepository.getWishListsByUserEmailAndWishListName(email, wishList.getWishListName());
-//        if(wishLists == null || wishLists.size()==0) {
-//            if(wishList.getIsbn() == null) {
-//                return new ResponseEntity<>("Wishlist should have at least one Book ISBN at the time of wishlist creation", HttpStatus.BAD_REQUEST);
-//            }
-//            if(BookRepository.findById(wishList.getIsbn()).isPresent()) {
-//                return new ResponseEntity<>("The book with given ISBN is not present", HttpStatus.BAD_REQUEST);
-//            }
-//                wishList.setUsername(email);
-//            wishlistRepository.save(wishList);
-//            return new ResponseEntity<>("Wishlist with name "+ wishList.getWishListName() + " created", HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Wishlist with name "+ wishList.getWishListName() + " is already present", HttpStatus.BAD_REQUEST);
-//        }
-//    }
 	
-	@PostMapping("/add")
-	public wishlist createUser(@RequestBody wishlist wishlist) {
-		return wishlistRepository.save(wishlist);
-	}
 
 
 
