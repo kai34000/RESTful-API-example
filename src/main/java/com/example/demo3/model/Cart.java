@@ -1,7 +1,5 @@
 package com.example.demo3.model;
 
-import com.example.demo3.dto.AddToCartDto;
-import com.example.demo3.dto.CartDto;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -25,36 +23,34 @@ public class Cart {
 
     private int quantity;
 
-
     public Cart(){
+
     }
 
-    public Cart(CartDto cartDto, Book book, String username) {
-        this.username = username;
-        this.book = book;
-        this.book_id = cartDto.getBook().getIsbn();
-        this.quantity = cartDto.getQuantity();
-    }
-
-    public Cart(@NotNull String username, @NotNull Long book_id, int quantity) {
-        this.username = username;
+    public Cart(@NotNull Long book_id, @NotNull Integer quantity){
         this.book_id = book_id;
         this.quantity = quantity;
     }
 
-    public Cart(CartDto cartDto, Book book) {
-        this.book_id = cartDto.getBook().getIsbn();
-        this.quantity = cartDto.getQuantity();
-        this.book = book;
-    }
-
-    // used in CartService.getAddToCartFromDto
-    public Cart(AddToCartDto addToCartDto, String username){
+    //fix
+    public Cart(Integer cart_id, String username, Book book, int quantity) {
+        this.cart_id = cart_id;
         this.username = username;
-        this.book_id = addToCartDto.getBook_id();
-        this.quantity = addToCartDto.getQuantity();
+        this.book = book;
+        this.quantity = quantity;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cart_item_id=" + cart_id +
+                ", username='" + username + '\'' +
+                ", quantity=" + quantity +
+                ", book name" + book.getBook_name() +
+                '}';
+    }
 
 
     public Integer getCart_id() {

@@ -1,6 +1,5 @@
 package com.example.demo3.controller;
 
-import com.example.demo3.dto.AddToCartDto;
 import com.example.demo3.model.Book;
 import com.example.demo3.model.Cart;
 import com.example.demo3.model.CartCost;
@@ -22,10 +21,11 @@ public class CartController {
         return cartService.listCartItems(username);
     }
 
-    //add a book to user's cart
+
+
     @PostMapping
-    public void addToCart(@RequestBody AddToCartDto addToCartDto, @RequestParam String username){
-        cartService.addToCart(addToCartDto,username);
+    public void addToCart(@RequestBody Cart cart, @RequestParam String username){
+        cartService.addToCart(cart,username);
     }
 
 
@@ -36,10 +36,10 @@ public class CartController {
     }
 
 
-    //let user update quantity of an existing book item in their cart
+    //let user update quantity of an existing book item in cart
     @PutMapping("/update/{cartItemId}")
-    public void updateCartItem(@PathVariable("cartItemId")Integer itemId, @RequestBody AddToCartDto cartDto, @RequestParam String username){
-        cartService.updateCartItem(itemId,cartDto, username);
+    public void updateCartItem(@PathVariable("cartItemId")Integer itemId, @RequestBody Cart cart, @RequestParam String username){
+        cartService.updateCartItem(itemId,cart, username);
     }
 
 

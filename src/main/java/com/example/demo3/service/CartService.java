@@ -1,7 +1,5 @@
 package com.example.demo3.service;
 
-import com.example.demo3.dto.AddToCartDto;
-import com.example.demo3.dto.CartDto;
 import com.example.demo3.exceptions.CartItemNotExistException;
 import com.example.demo3.model.Book;
 import com.example.demo3.model.Cart;
@@ -23,49 +21,37 @@ public class CartService {
     }
 
 
-    public void addToCart(AddToCartDto addToCartDto, String username){
-        Cart cart = getAddToCartFromDto(addToCartDto,username);
+
+    public void addToCart(Cart cart, String username){
+        cart.setUsername(username);
         cartRepository.save(cart);
     }
-
-    public Cart getAddToCartFromDto(AddToCartDto addToCartDto, String username){
-        Cart cart = new Cart(addToCartDto,username);
-        return cart;
-    }
-
 
 
     public CartCost listCartItems(String username){
         List<Cart> cartList = cartRepository.findAllByUsername(username);
-        List<CartDto> cartItems = new ArrayList<>();
+        List<Cart> cartItems = new ArrayList<>();
         for(Cart cart: cartList){
-            CartDto cartDto = getDtoFromCart(cart);
-            cartItems.add(cartDto);
+            cartItems.add(cart);
         }
         double totalCost = 0;
-        for(CartDto cartDto:cartItems){
-            totalCost += (cartDto.getBook().getPrice()*cartDto.getQuantity());
+        for(Cart cart:cartItems){
+            totalCost += (cart.getBook().getPrice()*cart.getQuantity());
         }
         CartCost cartCost = new CartCost(cartItems,totalCost);
         return cartCost;
     }
 
-    public static CartDto getDtoFromCart(Cart cart){
-        CartDto cartDto = new CartDto(cart);
-        return cartDto;
-    }
 
 
-    public void updateCartItem(Integer cartItemId, AddToCartDto cartDto, String username) throws CartItemNotExistException{
+    public void updateCartItem(Integer cartItemId, Cart cart, String username) throws CartItemNotExistException{
         if(!cartRepository.existsById(cartItemId))
-            throw new CartItemNotExistException("Cart-Item's ID " + cartDto.getCart_item_id() + " is invalid.");
-
-        Cart cart = getAddToCartFromDto(cartDto, username);
+            throw new CartItemNotExistException("Cart-Item's ID " + cart.getCart_id() + " is invalid.");
 
         cart.setUsername(username);
         cart.setCart_id(cartItemId);
-        cart.setQuantity(cartDto.getQuantity());
-        cart.setBook_id(cartDto.getBook_id());
+        cart.setQuantity(cart.getQuantity());
+        cart.setBook_id(cart.getBook_id());
 
         cartRepository.save(cart);
     }

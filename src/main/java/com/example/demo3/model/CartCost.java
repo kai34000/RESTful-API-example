@@ -1,24 +1,23 @@
 package com.example.demo3.model;
 
-import com.example.demo3.dto.CartDto;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 
 import java.util.List;
 
 public class CartCost {
-    private List<CartDto> cartItems;
+    private List<Cart> cartItems;
     private double totalCost;
 
-    public CartCost(List<CartDto> cartDtoList, double totalCost){
-        this.cartItems = cartDtoList;
+    public CartCost(List<Cart> cartList, double totalCost){
+        this.cartItems = cartList;
         this.totalCost = totalCost;
     }
 
-    public List<CartDto> getCartItems() {
+    public List<Cart> getCartItems() {
         return cartItems;
     }
 
-    public void setCartItems(List<CartDto> cartItems) {
+    public void setCartItems(List<Cart> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -33,7 +32,7 @@ public class CartCost {
     @Override
     public String toString() {
         return "CartCost{" +
-                "cartItems=" + cartItems + //this how to print  List items??
+                "cartItems=" + cartItems +
                 ", totalCost=" + totalCost +
                 '}';
     }
