@@ -33,10 +33,6 @@ public class CartController {
         cartService.deleteCartItem(itemId,username);
     }
 
-//    @PutMapping("/update/{cartItemId}")
-//    public void updateCartItem(@RequestBody AddToCartDto cartDto, @RequestParam String username, @RequestParam Book book){
-//        cartService.updateCartItem(cartDto, username, book);
-//    }
 
     @PutMapping("/update/{cartItemId}")
     public void updateCartItem(@PathVariable("cartItemId")Integer itemId, @RequestBody AddToCartDto cartDto, @RequestParam String username){
